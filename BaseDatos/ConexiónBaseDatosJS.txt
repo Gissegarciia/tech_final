@@ -1,0 +1,51 @@
+const { MongoClient } = require('mongodb');
+
+async function connectToDatabase() {
+    const uri = 'mongodb://localhost:27017';
+    const client = new MongoClient(uri);
+
+    try {
+        await client.connect();
+        console.log('Conexión exitosa a la base de datos');
+
+        const database = client.db('cursos');
+
+        // Acceder a las colecciones del script de Mongo
+        const rolCollection = database.collection('rol');
+        const usuarioCollection = database.collection('usuario');
+        const cursosCollection = database.collection('cursos');
+        const empresasPagoCollection = database.collection('empresas_pago');
+        const reciboPagoCollection = database.collection('recibo_pago');
+        const alumnoClaseCollection = database.collection('alumno_clase');
+        const evaluacionesCollection = database.collection('evaluaciones');
+
+        // Realizar operaciones con las colecciones
+        const rolDocuments = await rolCollection.find().toArray();
+        console.log('Documentos de la colección "rol":', rolDocuments);
+
+        const usuarioDocuments = await usuarioCollection.find().toArray();
+        console.log('Documentos de la colección "usuario":', usuarioDocuments);
+
+        const cursosDocuments = await cursosCollection.find().toArray();
+        console.log('Documentos de la colección "cursos":', cursosDocuments);
+
+        const empresasPagoDocuments = await empresasPagoCollection.find().toArray();
+        console.log('Documentos de la colección "empresas_pago":', empresasPagoDocuments);
+
+        const reciboPagoDocuments = await reciboPagoCollection.find().toArray();
+        console.log('Documentos de la colección "recibo_pago":', reciboPagoDocuments);
+
+        const alumnoClaseDocuments = await alumnoClaseCollection.find().toArray();
+        console.log('Documentos de la colección "alumno_clase":', alumnoClaseDocuments);
+
+        const evaluacionesDocuments = await evaluacionesCollection.find().toArray();
+        console.log('Documentos de la colección "evaluaciones":', evaluacionesDocuments);
+    } catch (error) {
+        console.log('Error al conectar a la base de datos:', error);
+    } finally {
+        await client.close();
+        console.log('Conexión cerrada');
+    }
+}
+
+connectToDatabase();

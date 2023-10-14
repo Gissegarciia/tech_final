@@ -1,0 +1,101 @@
+// Crear la base de datos
+use cursos;
+
+// Crear la colección "rol"
+db.createCollection("rol");
+
+// Crear la colección "usuario"
+db.createCollection("usuario");
+
+// Crear la colección "cursos"
+db.createCollection("cursos");
+
+// Crear la colección "empresas_pago"
+db.createCollection("empresas_pago");
+
+// Crear la colección "recibo_pago"
+db.createCollection("recibo_pago");
+
+// Crear la colección "alumno_clase"
+db.createCollection("alumno_clase");
+
+// Crear la colección "evaluaciones"
+db.createCollection("evaluaciones");
+
+// Crear el índice para el campo "id_rol" en la colección "rol"
+db.rol.createIndex({ id_rol: 1 }, { unique: true });
+
+// Crear el índice para el campo "id" en la colección "usuario"
+db.usuario.createIndex({ id: 1 }, { unique: true });
+
+// Crear el índice para el campo "id_curso" en la colección "cursos"
+db.cursos.createIndex({ id_curso: 1 }, { unique: true });
+
+// Crear el índice para el campo "id_empresa" en la colección "empresas_pago"
+db.empresas_pago.createIndex({ id_empresa: 1 }, { unique: true });
+
+// Crear el índice para el campo "id_pago" en la colección "recibo_pago"
+db.recibo_pago.createIndex({ id_pago: 1 }, { unique: true });
+
+// Crear el índice para el campo "id_alumno_clase" en la colección "alumno_clase"
+db.alumno_clase.createIndex({ id_alumno_clase: 1 }, { unique: true });
+
+// Crear el índice para el campo "id_evaluacion" en la colección "evaluaciones"
+db.evaluaciones.createIndex({ id_evaluacion: 1 }, { unique: true });
+
+// Insertar documentos en la colección "rol"
+db.rol.insertOne({
+  id_rol: 1,
+  nombre_rol: "nombre_rol"
+});
+
+// Insertar documentos en la colección "usuario"
+db.usuario.insertOne({
+  id: 1,
+  nombre: "nombre",
+  apellido: "apellido",
+  correo: "correo",
+  telefono: "telefono",
+  contrasena: "contrasena",
+  id_rol: 1
+});
+
+// Insertar documentos en la colección "cursos"
+db.cursos.insertOne({
+  id_curso: 1,
+  nombre_curso: "nombre_curso",
+  descripcion: "descripcion",
+  valor: 100,
+  estado_pago: 1,
+  id_docente: 1
+});
+
+// Insertar documentos en la colección "empresas_pago"
+db.empresas_pago.insertOne({
+  id_empresa: 1,
+  nombre_empresa: "nombre_empresa"
+});
+
+// Insertar documentos en la colección "recibo_pago"
+db.recibo_pago.insertOne({
+  id_pago: 1,
+  id_curso: 1,
+  metodo_pago: 1,
+  estado_pago: 1
+});
+
+// Insertar documentos en la colección "alumno_clase"
+db.alumno_clase.insertOne({
+  id_alumno_clase: 1,
+  id_alumno: 1,
+  id_curso: 1,
+  nota: 100,
+  estado_evaluacion: 1
+});
+
+// Insertar documentos en la colección "evaluaciones"
+db.evaluaciones.insertOne({
+  id_evaluacion: 1,
+  nombre_evaluacion: "nombre_evaluacion",
+  id_curso: 1
+});
